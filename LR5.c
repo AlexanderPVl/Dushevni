@@ -12,6 +12,15 @@ typedef struct
 	int size;
 } string;
 
+void PrintString(string Str)
+{
+	int i = 0;
+	for (i = 0; i < Str.size; i++)
+	{
+		printf("%c", Str.adres[i]);
+	}
+}
+
 string InverseString(string Str)
 {
 
@@ -54,6 +63,8 @@ int CreateString(string Str)
 int main()
 {
 	string str1 = { NULL, 0 };
+	CreateString(str1);
+	PrintString(str1);
 
 	return 0;
 }

@@ -14,7 +14,8 @@ typedef struct
 
 void PrintString(string Str)
 {
-	int i = 0;
+	printf("\nSize = %d\n", Str.size);
+	int i;
 	for (i = 0; i < Str.size; i++)
 	{
 		printf("%c", Str.adres[i]);
@@ -23,7 +24,7 @@ void PrintString(string Str)
 
 string InverseString(string Str)
 {
-
+	return Str;
 }
 
 void DeleteElement(string Str, int IndOfElement)
@@ -42,28 +43,29 @@ void DeleteNumbers(string Str)
 	{
 		if (0 >= Str.adres[i] - '0' || 9 <= Str.adres[i])
 		{
-			DeleteNumber(Str);
+			DeleteNumbers(Str);
 			DeleteElement(Str, i);
 		}
 	}
 }
 
-int CreateString(string Str)
+string CreateString(string Str)
 {
 	char c;
 
 	while ((c = getchar()) != '.')
 	{
-		Str.size++;
 		Str.adres = realloc(Str.adres, Str.size*sizeof(char));
-		Str.adres[Str.size-1] = c;
+		Str.adres[Str.size] = '1';
+		Str.size++;
 	}
+	return Str;
 }
 
 int main()
 {
 	string str1 = { NULL, 0 };
-	CreateString(str1);
+	str1 = CreateString(str1);
 	PrintString(str1);
 
 	return 0;

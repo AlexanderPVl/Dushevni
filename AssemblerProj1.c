@@ -32,8 +32,17 @@ int Calc(signed short int x, signed char y, signed char z)
 		add ax, 1;
 		mov v_asm, ax;
 	}
-	printf("Assembler calculation: v_asm = %x\n", v_asm);
-	printf("C calculation: v_c = %x\n", v_c);
+	if (v_asm < 0){
+		v_asm = 0xffffffff - v_asm + 1;
+		v_c = 0xffffffff - v_c + 1;
+		printf("Assembler calculation: v_asm = -%Xh\n", v_asm);
+		printf("C calculation: v_c = -%Xh\n", v_c);
+	}
+	else
+	{
+		printf("Assembler calculation: v_asm = %X\nh", v_asm);
+		printf("C calculation: v_c = %Xh\n", v_c);
+	}
 	return v_asm;
 }
 
@@ -42,7 +51,8 @@ void main()
 	int v; // word
 
 
-
 	v = Calc(-0x3, 0x3, 0x6);
+	printf("True answer: v = -3h\n\n");
 	v = Calc(0xB13, 0x25, -0x7E);
+	printf("True answer: v = -27ADh\n");
 }
